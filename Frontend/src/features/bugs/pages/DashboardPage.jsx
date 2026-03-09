@@ -1,11 +1,12 @@
 import React from "react";
-import MainLayout from "../../../shared/layout/MainLayout";
+import BugList from "../components/BugList";
 
 const DashboardPage = () => {
   return (
-    <MainLayout>
+    <>
       <h1>DashboardPage</h1>
-    </MainLayout>
+      <BugList />
+    </>
   );
 };
 

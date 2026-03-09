@@ -1,9 +1,20 @@
-import React from 'react'
+import { useStat } from "../hooks/useStat";
+import "../style/statCard.scss";
 
-const StatsCard = () => {
+const StatCard = ({ title, value }) => {
   return (
-    <div>StatsCard</div>
-  )
-}
+    <div className="stat-card">
 
-export default StatsCard
+      <p className="stat-card__title">
+        {title}
+      </p>
+
+      <h2 className="stat-card__value">
+        {value}
+      </h2>
+
+    </div>
+  );
+};
+
+export default StatCard;

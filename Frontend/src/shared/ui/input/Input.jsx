@@ -1,6 +1,6 @@
 import "./input.scss";
 
-const Input = ({ label, type = "text", placeholder }) => {
+const Input = ({ label, type = "text", placeholder, value, onChange }) => {
   return (
     <div className="input">
       {label && <label className="input__label">{label}</label>}
@@ -11,6 +11,8 @@ const Input = ({ label, type = "text", placeholder }) => {
         id={label}
         type={type}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

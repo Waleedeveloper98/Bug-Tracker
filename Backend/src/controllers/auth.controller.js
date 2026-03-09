@@ -82,3 +82,17 @@ export const logout = asyncHandler(async (req, res, next) => {
     })
 })
 
+
+export const getMe = asyncHandler(async (req, res, next) => {
+    const userId = req.user.id
+    const user = await userModel.findById(userId)
+
+    return res.status(200).json({
+        success: true,
+        message: "user details",
+        data: {
+            username: user.username,
+            email: user.email
+        }
+    })
+})

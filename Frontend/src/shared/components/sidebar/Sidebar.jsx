@@ -1,18 +1,43 @@
+import { NavLink } from "react-router-dom";
 import "./sidebar.scss";
 
 const Sidebar = () => {
   return (
     <aside className="sidebar">
-
       <nav className="sidebar__nav">
-
-        <a href="#">Dashboard</a>
-        <a href="#">My Bugs</a>
-        <a href="#">Create Bug</a>
-        <a href="#">Stats</a>
-
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+          to={"/"}
+        >
+          Dashboard
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+          to={"/my-bugs"}
+        >
+          My Bugs
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+          to={"/create"}
+        >
+          Create Bug
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+          to={"/stats"}
+        >
+          Stats
+        </NavLink>
       </nav>
-
     </aside>
   );
 };

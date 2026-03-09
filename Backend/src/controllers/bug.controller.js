@@ -41,7 +41,7 @@ export const getAllBugs = asyncHandler(async (req, res, next) => {
     if (priority) {
         filter.priority = priority
     }
-    const bugs = await bugModel.find(filter)
+    const bugs = await bugModel.find(filter).sort({ createdAt: -1 })
 
     return res.status(200).json({
         success: true,

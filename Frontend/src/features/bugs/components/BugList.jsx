@@ -1,9 +1,21 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useBug } from "../hooks/useBug";
+import "../style/bugList.scss";
+import BugCard from "./BugCard";
 
 const BugList = () => {
-  return (
-    <div>BugList</div>
-  )
-}
+  const { bugs, handleGetAllBugs } = useBug();
 
-export default BugList
+  useEffect(() => {
+    handleGetAllBugs();
+  }, []);
+  return (
+    <div className="bug-list">
+      {bugs?.map((bug) => (
+        <BugCard key={bug._id} bug={bug} />
+      ))}
+    </div>
+  );
+};
+
+export default BugList;

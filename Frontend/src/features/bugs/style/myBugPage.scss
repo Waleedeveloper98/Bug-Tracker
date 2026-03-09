@@ -1,0 +1,37 @@
+.bug-page {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-2xl);
+}
+
+/* page header */
+
+.bug-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  h1 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+  }
+
+  p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+}
+
+/* filter bar */
+
+.bug-page__filters {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr auto;
+
+  gap: var(--space-lg);
+
+  align-items: center;
+}

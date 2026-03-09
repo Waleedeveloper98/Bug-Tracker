@@ -1,9 +1,19 @@
-import React from 'react'
+import "../style/statGrid.scss";
 
-const StatsGrid = () => {
+import StatCard from "../components/StatsCard";
+import { useStat } from "../hooks/useStat";
+
+const StatGrid = () => {
+  const {stats} = useStat()
   return (
-    <div>StatsGrid</div>
-  )
-}
+    <div className="stat-grid">
+      <StatCard title="Open Bugs" value={stats?.openCount} />
 
-export default StatsGrid
+      <StatCard title="In Progress" value={stats?.inProgressCount} />
+
+      <StatCard title="Resolved Bugs" value={stats?.resolvedCount} />
+    </div>
+  );
+};
+
+export default StatGrid;

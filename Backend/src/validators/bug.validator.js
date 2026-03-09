@@ -23,13 +23,10 @@ export const createBugValidation = [
         .isIn(["open", "in-progress", "resolved"])
         .withMessage("Status must be open, in-progress, or resolved"),
 
-    body("createdBy")
-        .notEmpty().withMessage("createdBy is required")
-        .isMongoId().withMessage("createdBy must be a valid MongoDB ID"),
-
     body("assignedTo")
-        .notEmpty().withMessage("assignedTo is required")
-        .isMongoId().withMessage("assignedTo must be a valid MongoDB ID")
+        .optional()
+        .isMongoId()
+        .withMessage("assignedTo must be a valid MongoDB ID")
 ];
 
 export const bugIdValidation = [
