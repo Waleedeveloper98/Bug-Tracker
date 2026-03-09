@@ -1,9 +1,20 @@
-import React from 'react'
+import "./mainLayout.scss";
 
-const MainLayout = () => {
+import Sidebar from "../components/sidebar/Sidebar";
+import Navbar from "../components/navbar/Navbar";
+
+const MainLayout = ({ children }) => {
   return (
-    <div>MainLayout</div>
-  )
-}
+    <div className="layout">
+      <Sidebar />
 
-export default MainLayout
+      <div className="layout__main">
+        <Navbar />
+
+        <main className="layout__content">{children}</main>
+      </div>
+    </div>
+  );
+};
+
+export default MainLayout;

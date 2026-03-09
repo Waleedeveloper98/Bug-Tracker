@@ -1,0 +1,23 @@
+@use "../button//button.scss";
+
+.navbar {
+  height: var(--navbar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 var(--space-xl);
+
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__logo {
+  font-size: var(--text-md);
+  font-weight: var(--font-semibold);
+}
+
+.navbar__actions button {
+  font-size: var(--text-sm);
+}
