@@ -64,9 +64,9 @@ export const getSingleBug = asyncHandler(async (req, res, next) => {
 
 export const updateBug = asyncHandler(async (req, res, next) => {
     const bugId = req.params.bugId;
-    const { title, description } = req.body
+    const { title, description, status, priority } = req.body
 
-    const updatedBug = await bugModel.findByIdAndUpdate(bugId, { title, description }, { new: true })
+    const updatedBug = await bugModel.findByIdAndUpdate(bugId, { title, description, status, priority }, { new: true })
 
     return res.status(200).json({
         success: true,
@@ -128,8 +128,6 @@ export const updateBugStatus = asyncHandler(async (req, res, next) => {
 
 export const myAllBugs = asyncHandler(async (req, res, next) => {
     const userId = req.user.id
-
-
 
     const bugs = await bugModel.find({ createdBy: userId })
 

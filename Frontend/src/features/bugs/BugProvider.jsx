@@ -7,6 +7,7 @@ const BugProvider = ({ children }) => {
   const [bug, setBug] = useState(null);
   const [loading, setLoading] = useState(false);
   const [editBug, setEditBug] = useState(null);
+  const [myBugs, setMyBugs] = useState(null);
 
   return (
     <BugContext.Provider
@@ -19,6 +20,8 @@ const BugProvider = ({ children }) => {
         setBug,
         editBug,
         setEditBug,
+        myBugs,
+        setMyBugs,
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useBug } from "../hooks/useBug";
 import { useAuth } from "../../auth/hooks/useAuth";
 import BugForm from "../components/BugForm";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateBugPage = () => {
   const [title, setTitle] = useState("");
@@ -19,6 +19,7 @@ const CreateBugPage = () => {
   const { bugId } = useParams();
 
   const isEdit = !!bugId;
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ const CreateBugPage = () => {
       createdBy: "",
       assignedTo: null,
     });
+    navigate("/")
   };
 
   return (

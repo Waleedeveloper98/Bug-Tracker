@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { BugContext } from "../BugProvider";
-import { createBug, getAllBugs, updateTitleAndDescription } from "../services/bug.api";
+import { createBug, deleteBug, getAllBugs, myAllBugs, updateABug, updateBugStatus } from "../services/bug.api";
 
 export const useBug = () => {
-    const { bugs, setBugs, loading, setLoading, bug, setBug, editBug, setEditBug } = useContext(BugContext)
+    const { bugs, setBugs, loading, setLoading, bug, setBug, editBug, setEditBug, myBugs, setMyBugs } = useContext(BugContext)
 
     const handleGetAllBugs = async () => {
         setLoading(true)
@@ -26,16 +26,49 @@ export const useBug = () => {
         }
     }
 
-    const handleUpdateTitleAndDescription = async (bugId, { title, description }) => {
+    const handleUpdateABug = async (bugId, { title, description, status, priority }) => {
         setLoading(true)
         try {
-            await updateTitleAndDescription(bugId, { title, description })
+            const data = await updateABug(bugId, { title, description, status, priority })
+            console.log(data)
+        } catch (error) {
+            console.log(error.response.data.message)
+        }
+    }
+
+
+    const handleDeleteBug = async (bugId) => {
+        setLoading(true)
+        try {
+            await deleteBug(bugId)
+        } catch (error) {
+            console.log(error.response.data.message)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
+
+    const handleUpdateBugStatus = async (bugId, { status }) => {
+        try {
+            const data = await updateBugStatus(bugId, { status })
+            console.log(data)
+        } catch (error) {
+            console.log(error.response.data.message)
+        }
+    }
+
+    const handleGetMyAllBugs = async () => {
+        try {
+            const data = await myAllBugs()
+            setMyBugs(data.data)
+            console.log(data.data)
         } catch (error) {
             console.log(error.response.data.message)
         }
     }
 
     return ({
-        bugs, loading, handleGetAllBugs, handleCreateBug, editBug, setEditBug, handleUpdateTitleAndDescription
+        bugs, loading, handleGetAllBugs, handleCreateBug, editBug, setEditBug, handleUpdateABug, handleDeleteBug, handleUpdateBugStatus, handleGetMyAllBugs, myBugs
     })
 }

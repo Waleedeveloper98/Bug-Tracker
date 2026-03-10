@@ -6,8 +6,16 @@ import BugList from "../components/BugList";
 import Input from "../../../shared/ui/input/Input";
 import Select from "../../../shared/ui/select/Select";
 import Button from "../../../shared/components/button/Button";
+import { useBug } from "../hooks/useBug";
+import { useEffect } from "react";
+import BugCard from "../components/BugCard";
 
 const MyBugPage = () => {
+  const { handleGetMyAllBugs, myBugs } = useBug();
+
+  useEffect(() => {
+    handleGetMyAllBugs();
+  }, []);
   return (
     <div className="bug-page">
       <div className="bug-page__header">
@@ -15,7 +23,7 @@ const MyBugPage = () => {
         <p>Manage and track reported issues</p>
       </div>
 
-      <StatGrid />
+      {/* <StatGrid /> */}
 
       <div className="bug-page__filters">
         <Input placeholder="Search bugs..." />
@@ -37,7 +45,11 @@ const MyBugPage = () => {
         <Button>Create Bug</Button>
       </div>
 
-      <BugList />
+      <BugList>
+        {myBugs
+          ? myBugs?.map((bug) => <BugCard key={bug._id} bug={bug} />)
+          : "no bug found"}
+      </BugList>
     </div>
   );
 };

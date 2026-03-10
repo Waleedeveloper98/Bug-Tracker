@@ -3,8 +3,8 @@ import "../style/statGrid.scss";
 import StatCard from "../components/StatsCard";
 import { useStat } from "../hooks/useStat";
 
-const StatGrid = () => {
-  const {stats} = useStat()
+const StatGrid = ({stats}) => {
+  
   return (
     <div className="stat-grid">
       <StatCard title="Open Bugs" value={stats?.openCount} />

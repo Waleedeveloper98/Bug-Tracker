@@ -3,7 +3,7 @@ import Select from "../../../shared/ui/select/Select";
 import Input from "../../../shared/ui/input/Input";
 import Button from "../../../shared/components/button/Button";
 import { useBug } from "../hooks/useBug";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BugForm = ({
   handleSubmit,
@@ -17,12 +17,17 @@ const BugForm = ({
   setPriority,
   isEdit,
 }) => {
-  const { editBug, handleUpdateTitleAndDescription } = useBug();
+  const { editBug, handleUpdateABug } = useBug();
   const navigate = useNavigate();
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    await handleUpdateTitleAndDescription(editBug._id, { title, description });
+    await handleUpdateABug(editBug._id, {
+      title,
+      description,
+      status,
+      priority,
+    });
     navigate("/");
   };
 
@@ -79,9 +84,13 @@ const BugForm = ({
       </div>
 
       <div className="create-bug__actions">
-        <Button variant="secondary">Cancel</Button>
-
-        <Button handleSubmit={handleUpdate} type="submit">
+        <Link to={"/"}>
+          <Button variant="secondary">Cancel</Button>
+        </Link>
+        <Button
+          handleSubmit={isEdit ? handleUpdate : handleSubmit}
+          type="submit"
+        >
           {isEdit ? "Update Bug" : "Create Bug"}
         </Button>
       </div>
